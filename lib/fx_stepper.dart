@@ -759,40 +759,32 @@ class _StepperState extends State<FxStepper> with TickerProviderStateMixin {
   Widget _buildHorizontal() {
     final List<Widget> children = <Widget>[
       for (int i = 0; i < widget.steps.length; i += 1) ...<Widget>[
-        InkResponse(
-          onTap: widget.steps[i].state != FxStepState.disabled
-              ? () {
-                  widget.onStepTapped?.call(i);
-                }
-              : null,
-          canRequestFocus: widget.steps[i].state != FxStepState.disabled,
-          child: Row(
-            children: <Widget>[
-              SizedBox(
-                height: _isLabel() ? 104.0 : 72.0,
-                // width: 40000,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    if (widget.steps[i].label != null)
-                      const SizedBox(
-                        height: 24.0,
-                      ),
-                    Center(child: _buildIcon(i)),
-                    if (widget.steps[i].label != null)
-                      SizedBox(
-                        height: 24.0,
-                        child: _buildLabelText(i),
-                      ),
-                  ],
-                ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              height: _isLabel() ? 104.0 : 72.0,
+              // width: 40000,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  if (widget.steps[i].label != null)
+                    const SizedBox(
+                      height: 24.0,
+                    ),
+                  Center(child: _buildIcon(i)),
+                  if (widget.steps[i].label != null)
+                    SizedBox(
+                      height: 24.0,
+                      child: _buildLabelText(i),
+                    ),
+                ],
               ),
-              Container(
-                margin: const EdgeInsetsDirectional.only(start: 12.0),
-                child: _buildHeaderText(i),
-              ),
-            ],
-          ),
+            ),
+            Container(
+              margin: const EdgeInsetsDirectional.only(start: 12.0),
+              child: _buildHeaderText(i),
+            ),
+          ],
         ),
         if (!_isLast(i))
 
